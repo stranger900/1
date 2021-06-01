@@ -1,6 +1,9 @@
 ---
-- hosts: webservers 
+- name: Test connection
+  hosts: webservers 
   become: yes
+
   tasks:
-    - ping
----
+
+  - name: Ping
+    ping:
