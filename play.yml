@@ -9,4 +9,3 @@
 
   - name: Ping
     raw: sudo apt-get -y install python-simplejson
-    ping:
