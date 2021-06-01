@@ -1,16 +1,4 @@
 - hosts: webservers 
-  become: True
+  become: yes
   tasks:
-    - name: Install packages
-      apt:
-        name: "httpd"
-        state: "present"
-    - name: Start Apache server
-      service:
-        name: httpd
-        state: started
-        enabled: True
-    - name: Deploy static website
-      copy:
-        src: index.html
-        dest: /var/www/html/
+    - ping
