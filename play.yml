@@ -2,8 +2,11 @@
 - name: Test connection
   hosts: webservers 
   become: yes
+  become_method: sudo
+  gather_facts: false
 
   tasks:
 
   - name: Ping
+    raw: sudo apt-get -y install python-simplejson
     ping:
