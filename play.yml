@@ -9,5 +9,12 @@
 
   - name: Install python
     raw: sudo apt-get -y install python-simplejson
+
   - name: Ping
     ping:
+
+  - name: Install Apache WebServer
+    apt: name=httpd state=latest
+
+  - name: Start Apache
+    service: name=httpd state=started enabled=yes
