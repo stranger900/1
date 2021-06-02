@@ -13,7 +13,7 @@
   - name: Ping
     ping:
 
-  - name: installa dipendenze
+  - name: install dipendences
     apt:
       name: "{{item}}"
       state: present
@@ -24,15 +24,15 @@
       - curl
       - gnupg-agent
       - software-properties-common
-  - name: aggiungi chiave GPG
+  - name: add GPG
     apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
       state: present
-  - name: aggiungi repository docker
+  - name: add repository docker
     apt_repository:
       repo: deb https://download.docker.com/linux/ubuntu bionic stable
       state: present
-  - name: installa docker
+  - name: install docker
     apt:
       name: "{{item}}"
       state: latest
