@@ -12,7 +12,7 @@
         - name: Build Docker image from Dockerfile
           docker_image:
             name: web
-            path: docker/Dockerfile
+            path: /var/lib/jenkins/workspace/docker_flask/docker
             state: build
         
         - name: Running the container
