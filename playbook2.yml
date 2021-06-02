@@ -10,10 +10,7 @@
           pip: name=docker-py
       
         - name: Build Docker image from Dockerfile
-          docker_image:
-            name: web
-            path: /var/lib/jenkins/workspace/docker_flask/docker
-            state: build
+          command: docker build -t web /var/lib/jenkins/workspace/docker_flask/docker/Dockerfile
         
         - name: Running the container
           docker_container:
