@@ -1,21 +1,25 @@
 ---
-    - hosts: webservers      
+    - hosts: webservers
+      remote_user: apetrys330
       become: yes
       become_method: sudo
       tasks:
         - name: Install pip
-          apt: name=python-pip state=present
+          apt: name=python3-pip state=present
       
         - name: install docker-py
           pip: name=docker-py
       
         - name: Build Docker image from Dockerfile
-          command: docker build -t web /var/lib/jenkins/workspace/docker_flask/docker/Dockerfile
+          docker_image:
+            name: web
+            path: docker
+            state: build
         
         - name: Running the container
           docker_container:
             image: web:latest
-            path: docker/Dockerfile
+            path: docker
             state: running
             
         - name: Check if container is running
