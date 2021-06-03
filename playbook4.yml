@@ -3,7 +3,10 @@
   
   tasks:
 
-    - name: Pull default Docker image
-      docker_image:
-        name: andriy900/webapp
+    - name: Pull an image
+      community.docker.docker_image:
+        name: pacur/centos-7
         source: pull
+        # Select platform for pulling. If not specified, will pull whatever docker prefers.
+        pull:
+          platform: amd64
