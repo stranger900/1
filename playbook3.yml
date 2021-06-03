@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  tasks:
+    - name: Deploy WebApp
+      community.docker.docker_container:
+        name: webapp
+        image: andriy900/webapp
+        ports:
+          - "5000:5000"
