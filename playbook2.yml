@@ -1,8 +1,9 @@
 ---
-    - hosts: webservers
-      remote_user: apetrys330
-      become: yes
-      become_method: sudo
+- name: Test connection
+  hosts: webservers 
+  become: yes
+  become_method: sudo
+  gather_facts: false
       tasks:
         - name: Install pip
           apt: name=python3-pip state=present
