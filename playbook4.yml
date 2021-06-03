@@ -9,5 +9,5 @@
 
     - name: Pull default Docker image
       docker_image:
-        name: "{{ default_container_image }}"
+        name: andriy900/webapp
         source: pull
