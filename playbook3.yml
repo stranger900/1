@@ -2,7 +2,7 @@
 - hosts: webservers
   tasks:
 
-    - name: Deploy WebApp
+    - name: Create a data container
       community.docker.docker_container:
         name: web-app
         image: andriy900/webapp
