@@ -2,10 +2,10 @@
 - hosts: webservers
   tasks:
 
-    - name: Create a data container
-      community.docker.docker_container:
-        name: web-app
-        image: andriy900/webapp
-        ports:
-          - "5000:5000"
-        restart_policy: always
+    name: Create a data container
+    community.docker.docker_container:
+      name: web-app
+      image: andriy900/webapp
+      ports:
+        - "5000:5000"
+      restart_policy: always
