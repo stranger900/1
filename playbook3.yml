@@ -3,7 +3,7 @@
   tasks:
     - name: Deploy WebApp
       community.docker.docker_container:
-        name: webapp
+        name: web-app
         image: andriy900/webapp
         ports:
           - "5000:5000"
