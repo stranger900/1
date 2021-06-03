@@ -1,9 +1,8 @@
 ---
-- name: Deploy webapp
-  hosts: webservers 
+- hosts: webservers 
   become: yes
   become_method: sudo
-  gather_facts: false
+  gather_facts: no
 
   tasks:
 
