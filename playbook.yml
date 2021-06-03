@@ -41,7 +41,7 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-  - name: assicurati che docker sia attivo
+  - name: enabled docker
     service:
       name: docker
       state: started
