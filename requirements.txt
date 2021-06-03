@@ -1,2 +1,1 @@
-Flask
-Gunicorn
+Flask==0.12
