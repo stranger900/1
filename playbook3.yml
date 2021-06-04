@@ -3,7 +3,7 @@
   tasks:
 
     - name: Create container
-      community.docker.docker_container:
+      docker_container:
         name: web
         image: andriy900/webapp
         ports:

@@ -4,7 +4,7 @@
   tasks:
 
     - name: Pull an image
-      community.docker.docker_image:
+      docker_image:
         name: pacur/centos-7
         source: pull
         # Select platform for pulling. If not specified, will pull whatever docker prefers.
