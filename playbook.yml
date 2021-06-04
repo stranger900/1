@@ -7,8 +7,14 @@
 
   tasks:
 
+  - name: Update
+    raw: sudo apt-get -y update
+
   - name: Install python
-    raw: sudo apt-get -y install python-simplejson
+    raw: sudo apt-get -y install python3.8
+  
+  - name: Install python pip3
+    raw: sudo apt-get -y install python3-pip
 
   - name: Ping
     ping:
@@ -41,6 +47,9 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+  - name: docker user
+    raw: sudo usermod -aG docker $USER
+
   - name: enabled docker
     service:
       name: docker
