@@ -4,9 +4,15 @@
   tasks:
 
     - name: Pull an image
-      docker_image:
-        name: pacur/centos-7
-        source: pull
-        # Select platform for pulling. If not specified, will pull whatever docker prefers.
-        pull:
-          platform: amd64
+    - name: Launch new nginx-proxy container
+      community.docker.docker_container:
+        name: proxy
+        image: nginx:latest
+        state: started
+        restart_policy: unless-stopped
+        networks_cli_compatible: no
+        container_default_behavior: compatibility
+        exposed_ports:
+          - "443"
+        ports:
+          - "443:443"
