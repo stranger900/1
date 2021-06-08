@@ -4,7 +4,7 @@
   become: yes
   become_method: sudo
   gather_facts: false
-    tasks:
+  tasks:
     - name: Install required system packages
       apt:
         name: "{{ item }}"
