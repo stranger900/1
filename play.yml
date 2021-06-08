@@ -1,14 +1,14 @@
 ---
 - name: Test connection
   hosts: webservers 
-  remote-user: ubuntu
+  remote_user: ubuntu 
   become: yes
   become_method: sudo
   gather_facts: false
 
   tasks:
 
-    - name: Ping
-      ping:
+      - name: Ping
+        ping:
 
 
