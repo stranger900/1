@@ -1,0 +1,18 @@
+---
+- hosts: webservers
+  remote_user: apetrys330 
+  become: true
+  tasks:
+
+    - name: Launch new nginx-proxy container
+      community.docker.docker_container:
+        name: proxy
+        image: nginx:latest
+        state: started
+        restart_policy: unless-stopped
+        networks_cli_compatible: no
+        container_default_behavior: compatibility
+        exposed_ports:
+          - "443"
+        ports:
+          - "443:443"
