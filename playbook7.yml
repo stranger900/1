@@ -4,7 +4,7 @@
   become: true
   tasks:
 
-    - name: Launch new nginx-proxy container
+    - name: Launch new webapp container
       community.docker.docker_container:
         name: webserver
         image: andriy900/webapp:latest
