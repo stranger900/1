@@ -1,0 +1,18 @@
+---
+- hosts: webservers
+  remote_user: ubuntu 
+  become: true
+  tasks:
+
+    - name: Launch new nginx-proxy container
+      community.docker.docker_container:
+        name: webserver
+        image: andriy900/webapp:latest
+        state: started
+        restart_policy: unless-stopped
+        networks_cli_compatible: no
+        container_default_behavior: compatibility
+        exposed_ports:
+          - "5000"
+        ports:
+          - "5000:5000
