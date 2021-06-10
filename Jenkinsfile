@@ -17,7 +17,7 @@ pipeline{
         stage('Docker Build and Tag') {
           steps {
               
-              sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}${BUILD_NUMBER} .'                
+              sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} .'                
                
           }
         }
@@ -29,7 +29,7 @@ pipeline{
         }
         stage('Publish image to Docker Hub') {
           steps {
-              sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}${BUILD_NUMBER}'
+              sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
           }
         }
         stage ('Checkout') {
