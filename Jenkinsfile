@@ -3,10 +3,8 @@ pipeline{
     
     environment{
         
-        DOCKERHUB_CRED = credentials('dockerhub')
-        WORKSPACE      = '/var/lib/jenkins/workspace/test'
-        IMAGE_NAME     = 'andriy900/webapp:latest'
-        GIT_REPO       =  'https://github.com/stranger900/1.git' 
+        DOCKERHUB_CRED = credentials('dockerhub')        
+        IMAGE_NAME     = 'andriy900/webapp:$GIT_BRANCH-$BUILD_NUMBER'        
         
     stages{
         stage('Git init'){
