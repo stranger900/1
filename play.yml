@@ -1,6 +1,6 @@
 ---
 - name: Test connection
-  hosts: "{{ ENV }}"
+  hosts: prod
   remote_user: ubuntu 
   become: yes
   become_method: sudo
