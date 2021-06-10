@@ -27,11 +27,11 @@ pipeline{
               sh 'echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USR} --password-stdin'
           }
         }
-        // stage('Publish image to Docker Hub') {
-        //   steps {
-        //       sh 'docker push ${IMAGE_NAME}'
-        //   }
-        // }
+        stage('Publish image to Docker Hub') {
+          steps {
+              sh 'docker push ${IMAGE_NAME}'
+          }
+        }
         stage ('Checkout') {
           steps {
             
