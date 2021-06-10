@@ -4,7 +4,8 @@ pipeline{
     environment{
         
         DOCKERHUB_CRED = credentials('dockerhub')        
-        IMAGE_NAME     = 'andriy900/webapp:$GIT_BRANCH-$BUILD_NUMBER'        
+        IMAGE_NAME     = 'andriy900/webapp:${GIT_BRANCH}-${BUILD_NUMBER}' 
+        ENV="${GIT_BRANCH.equalsIgnoreCase('master') ? 'PROD' : 'DEV'}"
         
     stages{
         stage('Git init'){
@@ -15,7 +16,7 @@ pipeline{
         stage('Docker Build and Tag') {
           steps {
               
-                sh 'docker build -t $IMAGE_NAME .'                
+              sh 'docker build -t ${IMAGE_NAME} .'                
                
           }
         }
@@ -27,7 +28,7 @@ pipeline{
         }
         stage('Publish image to Docker Hub') {
           steps {
-              sh 'docker push $IMAGE_NAME'
+              sh 'docker push ${IMAGE_NAME}'
           }
         }
         
@@ -49,7 +50,7 @@ pipeline{
         }
         stage('Deploy') {
           steps {
-              ansiblePlaybook credentialsId: 'private-key', installation: 'ansible', inventory: 'hosts', playbook: 'playbook7.yml'
+              ansiblePlaybook credentialsId: 'private-key', installation: 'ansible',  extras: '$ENV', inventory: 'hosts', playbook: 'playbook7.yml'
           }
         }
     }
