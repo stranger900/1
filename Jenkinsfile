@@ -14,13 +14,13 @@ pipeline{
                 git 'https://github.com/stranger900/1.git'
             }
         }
-        // stage('Docker Build and Tag') {
-        //   steps {
+        stage('Docker Build and Tag') {
+          steps {
               
-        //       sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}${GIT_BRANCH}:${BUILD_NUMBER} .'                
+              sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} .'                
                
-        //   }
-        // }
+          }
+        }
         stage('Login Docker Hub') {
           steps {
               //sh 'docker login -u lgn -p psw'
