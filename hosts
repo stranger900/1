@@ -5,5 +5,5 @@
 192.168.1.15 ansible_user=ubuntu
 
 [all:children]
-192.168.1.8 ansible_user=ubuntu
-192.168.1.15 ansible_user=ubuntu
+prod
+dev
