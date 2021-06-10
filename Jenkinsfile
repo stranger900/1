@@ -58,7 +58,7 @@ pipeline{
         }
         stage('Deploy') {
           steps {
-              ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", , branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'playbook7.yml'
+              ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'playbook7.yml'
           }
         }
     }
