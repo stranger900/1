@@ -1,6 +1,6 @@
 ---
 - name: Test connection
-  hosts: webservers 
+  hosts: "{{ env }}" 
   become: yes
   become_method: sudo
   gather_facts: false
