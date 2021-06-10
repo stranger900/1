@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ ENV }}"
+- hosts: "{{ env }}"
   remote_user: ubuntu 
   become: true
   tasks:
