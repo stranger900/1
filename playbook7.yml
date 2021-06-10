@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: "{{ ENV }}"
   remote_user: ubuntu 
   become: true
   tasks:
