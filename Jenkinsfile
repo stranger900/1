@@ -29,7 +29,7 @@ pipeline{
         }
         stage('Publish image to Docker Hub') {
           steps {
-              sh 'docker push ${IMAGE_NAME}'
+              sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
           }
         }
         stage ('Checkout') {
