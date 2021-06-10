@@ -6,7 +6,7 @@ pipeline{
         DOCKERHUB_CRED = credentials('dockerhub')        
         IMAGE_NAME     = 'andriy900/webapp:${GIT_BRANCH}-${BUILD_NUMBER}' 
         ENV="${GIT_BRANCH.equalsIgnoreCase('master') ? 'prod' : 'dev'}"
-        
+    }
     stages{
         stage('Git init'){
             steps{
