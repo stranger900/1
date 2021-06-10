@@ -1,19 +1,23 @@
 pipeline{
     agent any
+    
     environment{
+        
         DOCKERHUB_CRED = credentials('dockerhub')
-        WORKSPACE = '/var/lib/jenkins/workspace/test'
-    }
+        WORKSPACE      = '/var/lib/jenkins/workspace/test'
+        IMAGE_NAME     = 'andriy900/webapp:latest'
+        GIT_REPO       =  'https://github.com/stranger900/1.git' 
+        
     stages{
         stage('Git init'){
             steps{
-                git 'https://github.com/stranger900/1.git'
+                git $GIT_REPO
             }
         }
         stage('Docker Build and Tag') {
           steps {
               
-                sh 'docker build -t andriy900/webapp:latest .'                
+                sh 'docker build -t $IMAGE_NAME .'                
                
           }
         }
@@ -25,7 +29,7 @@ pipeline{
         }
         stage('Publish image to Docker Hub') {
           steps {
-              sh 'docker push andriy900/webapp:latest'
+              sh 'docker push $IMAGE_NAME'
           }
         }
         
