@@ -1,0 +1,11 @@
+- name: Test connection
+  hosts: "{{ env }}"
+  remote_user: ubuntu 
+  become: yes
+  become_method: sudo
+  gather_facts: false
+
+  roles:
+    - my_ping
+    - install_docker
+    - deploy_webapp

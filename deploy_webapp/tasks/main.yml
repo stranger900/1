@@ -1,0 +1,15 @@
+---
+# tasks file for deploy_webapp
+
+    - name: Launch new webapp container
+      community.docker.docker_container:
+        name: webserver
+        image: andriy900/webapp:{{ branch_name }}-{{ build_number }}
+        state: started
+        restart_policy: unless-stopped
+        networks_cli_compatible: no
+        container_default_behavior: compatibility
+        exposed_ports:
+          - "5000"
+        ports:
+          - "5000:5000"
