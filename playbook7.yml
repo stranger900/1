@@ -5,4 +5,6 @@
   tasks:
 
    - name: Stop a container
-     command: "sudo docker stop $(docker ps -a)"
+     community.docker.docker_container:
+       name: andriy900/webapp:master-11
+       state: stopped

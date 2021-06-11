@@ -1,16 +1,20 @@
 ---
-- hosts: localhost
+- hosts: "{{ env }}"
+  remote_user: ubuntu 
+  become: true
+ 
   gather_facts: false
 
   tasks:
-    - name: Get running containers
-      docker_host_info:
-        containers: yes
-      register: docker_info
-
-    - name: Stop running containers
-      docker_container:
-        name: "{{ item }}"
-        state: stopped
-      loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
-
+    
+  - name: stop all docker containers
+    shell: docker stop $(docker ps -a -q)
+    ignore_errors: true
+    when: (docker ps -a -q) != 0
+  - name: remove all docker containers
+    shell: docker rm $(docker ps -a -q)
+    ignore_errors: true
+    when: (docker ps -a -q) != 0
+  - name: remove all docker images
+    shell: docker rmi $(docker images -q)
+    ignore_errors: true

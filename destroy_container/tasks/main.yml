@@ -1,0 +1,18 @@
+---
+# tasks file for destroy_container
+
+    - name: Get running containers
+      docker_host_info:
+        containers: yes
+      register: docker_info
+
+    - name: Stop running containers
+      docker_container:
+        name: "{{ item }}"
+        state: stopped
+      loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
+      
+    - name: Remove Stoped docker containers
+      shell: |
+        docker rm $(docker ps -a -q);
+      when: docker_info.containers != 0
