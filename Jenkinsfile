@@ -45,20 +45,20 @@ pipeline{
              sh 'ansible-galaxy collection install community.docker -p $WORKSPACE/collections'
           }
         }
-        stage('Ping') {
+//         stage('Ping') {
+//           steps {
+//               ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'play.yml'
+//               //echo "${GIT_BRANCH}"
+//           }
+//         }
+//         stage('Install docker') {
+//           steps {
+//               ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'playbook5.yml'
+//           }
+//         }
+        stage('Deploy app') {
           steps {
-              ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'play.yml'
-              //echo "${GIT_BRANCH}"
-          }
-        }
-        stage('Install docker') {
-          steps {
-              ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'playbook5.yml'
-          }
-        }
-        stage('Deploy') {
-          steps {
-              ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'playbook7.yml'
+              ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
           }
         }
     }
