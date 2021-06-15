@@ -7,6 +7,11 @@ app = Flask(__name__)
 def hello_world():
     return ('Hello world!')
 
+def image_name():
+    with open("settings.env", "r") as f:
+        for line in f:
+            print(line)
+
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
     
