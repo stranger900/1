@@ -7,6 +7,7 @@ app = Flask(__name__)
 def hello_world():
     return ('Hello world!')
 
+@app.route('/')
 def image_name():
     with open("settings.env", "r") as f:
         for line in f:
