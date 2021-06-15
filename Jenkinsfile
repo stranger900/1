@@ -31,6 +31,7 @@ pipeline{
         stage('Publish image to Docker Hub') {
           steps {
               //withDocker
+              sh 'echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USR} --password-stdin'
               sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
           }
         }
@@ -60,7 +61,7 @@ pipeline{
 //         }
         stage('Deploy app') {
           steps {
-              ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", port_number: "${PORT_NAMBER}" , installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
+              ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", port_number: "${PORT_NAMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
           }
         }
     }
