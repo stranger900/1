@@ -1,17 +1,20 @@
 
-from flask import Flask
+from flask import Flask, render_template
 
+#, template_folder= '/home/ubuntu/1'
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return ('Hello world!')
+#@app.route('/')
+#def hello_world():
+#    return ('Hello world!')
 
 @app.route('/')
-def image_name():
-    with open("settings.env", "r") as f:
-        for line in f:
-            return(line)
+def get_incorrect_answers():
+    print ('Hello world!')
+    with open("settings.env", "r") as file:
+        info = file.readlines()
+    
+    return render_template('index.html', info=info)
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
