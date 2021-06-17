@@ -14,4 +14,4 @@
         ports:
           - "{{ port_number }}:{{ port_number }}"
         env: 
-          TEST_ENV: 123456
+          TEST_ENV: "123456"
