@@ -26,17 +26,14 @@ pipeline{
                
           }
         }
-//         stage('Login Docker Hub') {
-//           steps {
-//               //sh 'docker login -u lgn -p psw'
-//               sh 'echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USR} --password-stdin'
-//           }
-//         }
+
         stage('Publish image to Docker Hub') {
           steps {
-              //withDocker
-              sh 'echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USR} --password-stdin'
-              sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
+              withDockerRegistry(credentialsId: 'dockerhub', url: '') {
+                  sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
+              }
+              //sh 'echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USR} --password-stdin'
+              //sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
           }
         }
 //         stage ('Checkout') {
@@ -52,17 +49,7 @@ pipeline{
              sh 'ansible-galaxy collection install community.docker -p $WORKSPACE/collections'
           }
         }
-//         stage('Ping') {
-//           steps {
-//               ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'play.yml'
-//               //echo "${GIT_BRANCH}"
-//           }
-//         }
-//         stage('Install docker') {
-//           steps {
-//               ansiblePlaybook credentialsId: 'private-key', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}"], installation: 'ansible', inventory: 'hosts', playbook: 'playbook5.yml'
-//           }
-//         }
+
         stage('Deploy app') {
           steps {
               ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", port_number: "${PORT_NAMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
