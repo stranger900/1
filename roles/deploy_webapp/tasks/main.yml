@@ -13,3 +13,5 @@
           - "{{ port_number }}"
         ports:
           - "{{ port_number }}:{{ port_number }}"
+        env_file: 
+          - "ansible_vault.yml"
