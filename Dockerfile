@@ -2,11 +2,6 @@
 
 FROM python:3.8-alpine
 
-ENV LOGIN=andriy
-ENV IMAGE_NAME=$IMAGE_NAME
-ENV BRANCH_NAME=$BRANCH_NAME
-ENV BUILD_NUMBER=$BUILD_NUMBER
-
 WORKDIR /docker-flask-test
 
 ADD . /docker-flask-test
