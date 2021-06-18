@@ -18,4 +18,4 @@
           LOGIN: "{{ docker_cred }}"
           IMAGE_NAME: "{{ image_name }}"
           BRANCH_NAME: "{{ branch_name }}"
-          BUILD_NAMBER: "{{ build_number }}"
+          BUILD_NUMBER: "{{ build_number }}"
