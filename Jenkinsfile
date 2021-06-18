@@ -11,38 +11,22 @@ pipeline{
         DOCKERHUB_CRED = credentials('dockerhub')   
     }    
     stages{
-//         stage('Git init'){
-//             steps{
-//                 git 'https://github.com/stranger900/1.git'
-//             }
-//         }
         stage('Docker Build and Tag') {
           steps {
 //               sh 'echo $LOGIN > settings.env'
 //               sh 'echo $IMAGE_NAME >> settings.env'
 //               sh 'echo $BRANCH_NAME >> settings.env'
 //               sh 'echo $BUILD_NUMBER >> settings.env'              
-              sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} .'                
-               
+              sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} .'            
           }
         }
-
         stage('Publish image to Docker Hub') {
           steps {
               withDockerRegistry(credentialsId: 'dockerhub', url: '') {
                   sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
-              }
-              //sh 'echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USR} --password-stdin'
-              //sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
+              }              
           }
         }
-//         stage ('Checkout') {
-//           steps {
-            
-//             echo "$BRANCH_NAME"
-//           }
-
-//         }
         stage('Install modules') {
           steps {
                sh 'export ANSIBLE_COLLECTIONS_PATHS="$WORKSPACE/collections"'
