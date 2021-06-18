@@ -15,12 +15,12 @@ with open ("settings.env", "w") as file:
         file.write(line + "\n")
 
 @app.route('/')
-def get_incorrect_answers():
-    print ('Hello world!')
-    with open("settings.env", "r") as file:
-        info = file.readlines()
+def get_var():
+    return ('Hello world!')
+#    with open("settings.env", "r") as file:
+#        info = file.readlines()
 
-    return render_template('index.html', info=info)
+#    return render_template('index.html', info=info)
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
