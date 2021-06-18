@@ -18,10 +18,10 @@ pipeline{
 //         }
         stage('Docker Build and Tag') {
           steps {
-              sh 'echo $LOGIN > settings.env'
-              sh 'echo $IMAGE_NAME >> settings.env'
-              sh 'echo $BRANCH_NAME >> settings.env'
-              sh 'echo $BUILD_NUMBER >> settings.env'              
+//               sh 'echo $LOGIN > settings.env'
+//               sh 'echo $IMAGE_NAME >> settings.env'
+//               sh 'echo $BRANCH_NAME >> settings.env'
+//               sh 'echo $BUILD_NUMBER >> settings.env'              
               sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} .'                
                
           }
