@@ -7,7 +7,7 @@ pipeline{
         PORT_NAMBER = "5000"
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
 //         BRANCH_NAME = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
-        ENV = "${$BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
+        ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
         DOCKERHUB_CRED = credentials('dockerhub')   
     }    
     stages{
