@@ -1,16 +1,11 @@
 
-#import sys
-#import os
-#from flask import Flask, render_template, redirect, url_for, request
-
+import os
 from flask import Flask, render_template
 
 #, template_folder= '/home/ubuntu/1'
 app = Flask(__name__)
 
-#@app.route('/')
-#def hello_world():
-#    return ('Hello world!')
+
 
 @app.route('/')
 def get_incorrect_answers():
