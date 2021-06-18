@@ -18,7 +18,7 @@ pipeline{
 //         }
         stage('Docker Build and Tag') {
           steps {
-//               sh 'echo $LOGIN > settings.env'
+               sh 'echo $LOGIN > settings.env'
 //               sh 'echo $IMAGE_NAME >> settings.env'
 //               sh 'echo $BRANCH_NAME >> settings.env'
 //               sh 'echo $BUILD_NUMBER >> settings.env'              
