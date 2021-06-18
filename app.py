@@ -2,11 +2,13 @@
 import os
 from flask import Flask, render_template
 
-#, template_folder= '/home/ubuntu/1'
 app = Flask(__name__)
 
 variables = [os.environ['TEST_ENV'], 
-             os.environ['token']]
+             os.environ['LOGIN']],
+             os.environ['IMAGE_NAME'],
+             os.environ['BRANCH_NAME'],
+             os.environ['BUILD_NAMBER']]
 
 with open ("settings.env", "w") as file:
      for line in variables:
