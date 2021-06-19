@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent {label 'ubuntu_ansible'}
     
     environment{
         IMAGE_NAME = "webapp" 
