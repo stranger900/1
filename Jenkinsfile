@@ -1,5 +1,5 @@
 pipeline{
-    agent {label 'ubuntu'}
+    agent {label 'Node1'}
     
     environment{
         IMAGE_NAME = "webapp" 
