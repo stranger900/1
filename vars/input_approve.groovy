@@ -1,4 +1,4 @@
-def input_approve(){     
+def call(){     
      input(
                  id: 'userInput',
                  message: 'Should we continue?', 
