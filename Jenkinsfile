@@ -1,6 +1,6 @@
 @Library("shared-libraries-input") _
 pipeline{
-    agent {label 'ubuntu_ansible'}
+    agent {label 'node2'}
     
     environment{
         IMAGE_NAME = "webapp" 
