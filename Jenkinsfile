@@ -18,7 +18,7 @@ pipeline{
         } 
         stage('Docker Build and Tag') {
           steps {  
-              docker_build(DOCKERHUB_CRED_USR:"${DOCKERHUB_CRED_USR}", IMAGE_NAME:"${IMAGE_NAME}", BRANCH_NAME:"${BRANCH_NAME}", BUILD_NUMBER:"${BUILD_NUMBER}")
+              docker_build(dockerhub_cred:"${DOCKERHUB_CRED_USR}", image_name:"${IMAGE_NAME}", branch_name:"${BRANCH_NAME}", build_number:"${BUILD_NUMBER}")
               //sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} .'            
           }
         }
