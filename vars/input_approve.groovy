@@ -1,6 +1,6 @@
 def input_approve(){     
      input(
-                 id: 'userInput'
+                 id: 'userInput',
                  message: 'Should we continue?', 
                  parameters: [
 
