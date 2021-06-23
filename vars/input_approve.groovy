@@ -1,7 +1,12 @@
 def input_approve(){     
      input(
+                 id: 'userInput'
                  message: 'Should we continue?', 
                  parameters: [
-                 string(name: 'Approval', defaultValue: 'YES', description: 'Are you sure to continue ?')
+
+                                    string(defaultValue: 'None',
+                                            description: 'Do you want to approve',
+                                            name: 'Approval'),                                                            
+         
           ])       
 }
