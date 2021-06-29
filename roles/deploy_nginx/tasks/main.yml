@@ -13,7 +13,11 @@
           - 80
         ports:
           - 80:80
-        mounts:
-          source: nginx.conf
-          target: /etc/nginx/nginx.conf         
           
+    - name: copy nginx configuration to remote host
+      template: src=nginx.conf dest=nginx.conf      
+      
+    - name: copy nginx.conf
+       become: yes
+       command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
+
