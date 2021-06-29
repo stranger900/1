@@ -15,4 +15,4 @@
           - 80:80
     - copy:    
         src: nginx.conf
-        dest: "{{ destin_folder }}"
+        dest: /etc/nginx/nginx.conf
