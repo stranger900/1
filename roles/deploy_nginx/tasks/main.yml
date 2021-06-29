@@ -10,9 +10,9 @@
         networks_cli_compatible: no
         container_default_behavior: compatibility
         exposed_ports:
-          - 80
+          - 5001
         ports:
-          - 80:80
+          - 5001:5001
           
     - name: copy nginx configuration to remote host
       template: src=nginx.conf dest=nginx.conf      
