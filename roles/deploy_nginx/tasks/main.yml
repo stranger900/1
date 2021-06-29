@@ -23,4 +23,4 @@
 
     - name: copy nginx.conf
       become: yes
-      command: /etc/init.d/nginx reload
+      command: docker restart $(docker ps)
