@@ -16,4 +16,6 @@
 #     - name: copy nginx.conf
 #       become: yes
 #       command: docker cp /home/ubuntu/jenkins/workspace/deploy_flask_app_master/nginx.conf nginxapp:/etc/nginx/nginx.conf
-      
+      - name: add the nginx configuration
+        template: src=nginx.conf dest=/etc/nginx/nginx.conf
+
