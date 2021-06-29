@@ -1,0 +1,18 @@
+---
+# tasks file for deploy_nginx
+
+    - name: Launch new webapp container
+      community.docker.docker_container:
+        name: nginxapp
+        image: nginx
+        state: started
+        restart_policy: unless-stopped
+        networks_cli_compatible: no
+        container_default_behavior: compatibility
+        exposed_ports:
+          - 80
+        ports:
+          - 80:80
+    - copy:    
+        src: nginx.conf
+        dest: "{{ destin_folder }}"
