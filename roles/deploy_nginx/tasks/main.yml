@@ -13,6 +13,6 @@
           - 80
         ports:
           - 80:80
-    - copy:    
-        src: nginx.conf
-        dest: /etc/nginx/nginx.conf
+    - name: copy nginx.conf
+        become: yes
+        command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
