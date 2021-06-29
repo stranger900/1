@@ -4,6 +4,10 @@
 [dev]
 192.168.1.13 ansible_user=ubuntu
 
+[web_server]
+192.168.1.16 ansible_user=ubuntu
+
 [all:children]
 prod
 dev
+web_server
