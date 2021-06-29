@@ -1,7 +1,7 @@
 ---
 # tasks file for deploy_nginx
 
-    - name: Launch new webapp container
+    - name: Launch new nginx container
       community.docker.docker_container:
         name: nginxapp
         image: nginx
@@ -17,11 +17,11 @@
     - name: copy nginx configuration to remote host
       template: src=nginx.conf dest=nginx.conf      
       
-    - name: copy nginx.conf
+    - name: copy nginx.conf to docker container
       become: yes
       command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
 
-    - name: Launch new webapp container
+    - name: Restart nginx container
       community.docker.docker_container:
         name: nginxapp
         image: nginx
