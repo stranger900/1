@@ -23,4 +23,4 @@
 
     - name: copy nginx.conf
       become: yes
-      command: systemctl restart nginx
+      command: /etc/init.d/nginx restart
