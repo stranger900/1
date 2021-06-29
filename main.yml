@@ -6,6 +6,7 @@
   gather_facts: false  
   
   roles:   
+    - destroy_container
     - deploy_nginx
     
 - name: Deploy webapp
