@@ -21,6 +21,9 @@
       become: yes
       command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
 
-    - name: copy nginx.conf
-      become: yes
-      command: docker restart $(docker ps)
+    - name: Launch new webapp container
+      community.docker.docker_container:
+        name: nginxapp
+        image: nginx
+        state: started
+        restart: yes
