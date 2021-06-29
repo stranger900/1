@@ -15,4 +15,4 @@
           - 80:80
     - name: copy nginx.conf
       become: yes
-      command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
+      command: docker cp ./nginx.conf nginxapp:/etc/nginx/nginx.conf
