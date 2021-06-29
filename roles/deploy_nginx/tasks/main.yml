@@ -18,6 +18,6 @@
       template: src=nginx.conf dest=nginx.conf      
       
     - name: copy nginx.conf
-       become: yes
-       command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
+      become: yes
+      command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
 
