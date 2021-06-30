@@ -21,10 +21,10 @@
       template: src=ansible_env.HOME/nginx.conf dest=ansible_env.HOME/nginx.conf  
       
     - debug:
-      var: ansible_env.HOME
+        var: ansible_env.HOME
       
     - debug:
-      var: ansible_enp0s3.ipv4.address
+        var: ansible_enp0s3.ipv4.address
       
     - name: Restart nginx container
       community.docker.docker_container:
