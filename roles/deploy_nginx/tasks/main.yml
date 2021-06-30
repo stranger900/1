@@ -20,6 +20,10 @@
     - name: copy nginx configuration to remote host
       template: src=nginx.conf dest=nginx.conf  
       
+    - name: Printing the environment variable in Ansible
+      debug:
+        msg: "{{ lookup('env','HOME') }}"  
+      
     - name: Restart nginx container
       community.docker.docker_container:
         name: nginxapp
