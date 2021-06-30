@@ -13,13 +13,15 @@
           - 5001
         ports:
           - 5001:5001
+        volumes:
+          - /home/ubuntu/:/etc/nginx/ 
           
     - name: copy nginx configuration to remote host
       template: src=nginx.conf dest=nginx.conf      
       
-    - name: copy nginx.conf to docker container
-      become: yes
-      command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
+#     - name: copy nginx.conf to docker container
+#       become: yes
+#       command: docker cp nginx.conf nginxapp:/etc/nginx/nginx.conf
 
     - name: Restart nginx container
       community.docker.docker_container:
