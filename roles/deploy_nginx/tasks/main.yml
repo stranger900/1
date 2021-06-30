@@ -23,6 +23,14 @@
     - name: Printing the environment variable in Ansible
       debug:
         msg: "{{ lookup('env','HOME') }}"  
+    
+    - name: Printing the environment variable in Ansible
+      debug:
+        msg: "{{ ansible_env.HOME }}"  
+        
+    - name: Printing the environment variable in Ansible
+      debug:
+        msg: "{{ ansible_env.SSH_CLIENT }}"      
       
     - name: Restart nginx container
       community.docker.docker_container:
