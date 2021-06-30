@@ -1,6 +1,6 @@
 ---
 # vars file for deploy_nginx
 
-vars:
-  source_folder = .
-  destin_folder = /etc/nginx/nginx.conf
+#vars:
+  source_folder: "{{ lookup('env','HOME') }}"  
+  destin_folder: /etc/nginx/nginx.conf
