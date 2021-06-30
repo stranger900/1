@@ -18,7 +18,7 @@
           #- "{{ ansible_env.HOME }}:/etc/nginx/" 
           
     - name: copy nginx configuration to remote host
-      template: src=ansible_env.HOME/nginx.conf dest=ansible_env.HOME/nginx.conf  
+      template: src=nginx.conf dest=ansible_env.HOME/nginx.conf  
       
     - name: Restart nginx container
       community.docker.docker_container:
