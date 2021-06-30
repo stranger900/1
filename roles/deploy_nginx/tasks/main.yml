@@ -14,7 +14,8 @@
         ports:
           - 5001:5001
         volumes:
-          - ansible_env.HOME:/etc/nginx/ 
+          #- ansible_env.HOME:/etc/nginx/ 
+          - /home/ubuntu/:/etc/nginx/ 
           
     - name: copy nginx configuration to remote host
       template: src=nginx.conf dest=nginx.conf  
