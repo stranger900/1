@@ -15,7 +15,8 @@
           - 5001:5001
         volumes:
           #- ansible_env.HOME:/etc/nginx/ 
-          - /home/ubuntu/:/etc/nginx/ 
+          #- /home/ubuntu/:/etc/nginx/ 
+          - "{{ source_folder }}:/etc/nginx/"
           
     - name: copy nginx configuration to remote host
       template: src=nginx.conf dest=nginx.conf  
@@ -26,11 +27,11 @@
     
     - name: Printing the environment variable in Ansible
       debug:
-        msg: "{{ ansible_env.HOME }}"  
+        msg: ansible_env.HOME
         
     - name: Printing the environment variable in Ansible
       debug:
-        msg: "{{ ansible_env.SSH_CLIENT }}"      
+        msg: ansible_env.SSH_CLIENT      
       
     - name: Restart nginx container
       community.docker.docker_container:
