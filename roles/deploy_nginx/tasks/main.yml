@@ -15,10 +15,9 @@
           - 5001:5001
         volumes:
           - ansible_env.HOME:/etc/nginx/ 
-          #- "{{ ansible_env.HOME }}:/etc/nginx/" 
           
     - name: copy nginx configuration to remote host
-      template: src=nginx.conf dest=ansible_env.HOME/nginx.conf  
+      template: src=nginx.conf dest=nginx.conf  
       
     - name: Restart nginx container
       community.docker.docker_container:
