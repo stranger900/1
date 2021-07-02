@@ -1,15 +1,3 @@
-- name: Deploy nginx
-  hosts: web_server
-  remote_user: ubuntu 
-  become: yes
-  become_method: sudo
-  gather_facts: false  
-  
-  roles:   
-    - my_ping
-    - destroy_container
-    - deploy_nginx
-    
 - name: Deploy webapp
   hosts: "{{ env }}"
   remote_user: ubuntu 
@@ -24,4 +12,5 @@
     - my_ping
     - install_docker
     - destroy_container
+    - deploy_nginx
     - deploy_webapp
