@@ -2,7 +2,7 @@
 # tasks file for deploy_nginx
 
     - name: copy nginx configuration to remote host
-      template: src=nginx.conf dest=/opt/nginx.conf  
+      template: src=nginx.conf dest=/home/ubuntu/nginx.conf  
       
     - name: Launch new nginx container
       community.docker.docker_container:
@@ -18,8 +18,8 @@
           - 5001:5001
         volumes:
           #- ansible_env.HOME:/etc/nginx/ 
-          #- /home/ubuntu/:/etc/nginx/ 
-          - /opt/:/etc/nginx/"
+          - /home/ubuntu/:/etc/nginx/ 
+          #- /opt/:/etc/nginx/"
           
     
       
