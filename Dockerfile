@@ -6,7 +6,6 @@ WORKDIR /docker-flask-test
 
 ADD . /docker-flask-test
 
-#RUN pip install -r requirements.txt
-RUN pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org -U flask
+RUN pip install -r requirements.txt
 
 CMD ["python","app.py"]
