@@ -11,6 +11,6 @@
   roles:
     - my_ping
     - install_docker
-    - destroy_container
+    #- destroy_container
     - deploy_nginx
     - deploy_webapp
