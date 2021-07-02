@@ -4,7 +4,7 @@ WORKDIR /docker-flask-test
 
 ADD . /docker-flask-test
 
-#RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -U Flask
+#RUN pip install -r requirements.txt
 
 CMD ["python","app.py"]
