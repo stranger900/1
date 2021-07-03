@@ -6,6 +6,7 @@ pipeline{
         IMAGE_NAME = "webapp" 
         LOGIN = "andriy900"
         PORT_NAMBER = "5000"
+        DC_PORT_NUMBER = "5001"
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
         DOCKERHUB_CRED = credentials('dockerhub')   
@@ -38,7 +39,7 @@ pipeline{
 
         stage('Deploy app') {
           steps {
-              ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", port_number: "${PORT_NAMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
+              ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NAMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
           }
         }
     }
