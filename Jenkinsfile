@@ -6,7 +6,7 @@ pipeline{
         IMAGE_NAME = "webapp" 
         LOGIN = "andriy900"
         PORT_NAMBER = "5000"
-        DC_PORT_NUMBER = "5001"
+        DC_PORT_NUMBER = "5002"
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
         DOCKERHUB_CRED = credentials('dockerhub')   
