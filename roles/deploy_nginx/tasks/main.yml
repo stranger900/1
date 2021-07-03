@@ -15,9 +15,11 @@
         exposed_ports:
           - 80
           - 5001
+          - 5002
         ports:
           - 80:80
           - 5001:5001
+          - 5002:5002
         volumes:
           #- ansible_env.HOME:/etc/nginx/ 
           - /home/ubuntu/:/etc/nginx/ 
