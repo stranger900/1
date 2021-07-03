@@ -1,2 +1,37 @@
 ---
 # tasks file for deploy_nginx_conf
+
+    - name: copy nginx configuration to remote host
+      template: src=nginx.conf dest=/home/ubuntu/nginx.conf  
+      
+#     - name: Launch new nginx container
+#       community.docker.docker_container:
+#         name: nginxapp
+#         image: nginx
+#         state: started
+#         restart_policy: unless-stopped
+#         networks_cli_compatible: no
+#         container_default_behavior: compatibility
+#         exposed_ports:
+#           - 80
+#           - 5001
+#         ports:
+#           - 80:80
+#           - 5001:5001
+#         volumes:
+#           #- ansible_env.HOME:/etc/nginx/ 
+#           - /home/ubuntu/:/etc/nginx/ 
+#           #- /opt/:/etc/nginx/"
+          
+    
+      
+    - name: Printing the environment variable in Ansible
+      debug:
+        msg: "{{ lookup('env','HOME') }}"      
+      
+    - name: Restart nginx container
+      community.docker.docker_container:
+        name: nginxapp
+        image: nginx
+        state: started
+        restart: yes
