@@ -13,6 +13,6 @@
     - my_ping
     #- install_docker
     #- destroy_container
-    - deploy_nginx
-    #- deploy_nginx_conf
+    #- deploy_nginx
+    - deploy_nginx_conf
     - deploy_webapp
