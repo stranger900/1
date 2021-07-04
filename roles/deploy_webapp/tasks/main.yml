@@ -3,7 +3,7 @@
 
     - name: Launch new webapp container
       community.docker.docker_container:
-        name: "{{ env }}"
+        name: "{{ env }}-{{ build_number }}"
         image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
         state: started
         recreate: no
