@@ -16,8 +16,8 @@
         volumes:
           - /home/ubuntu/:/etc/nginx/
         comparisons:
-          image: ignore 
-          volumes: allow_more_present  
+          '*': ignore  # by default, ignore *all* options (including image)
+          env: strict 
         env: 
           TEST_ENV: "{{ TEST_ENV }}"
           LOGIN: "{{ docker_cred }}"
