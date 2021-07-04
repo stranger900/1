@@ -15,5 +15,5 @@
       community.docker.docker_container:
         name: nginxapp
         image: nginx
-        state: present
+        state: started
         command: "/etc/init.d/nginx reload"
