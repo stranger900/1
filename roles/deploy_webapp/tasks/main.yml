@@ -13,11 +13,11 @@
           - "{{ port_number }}"
         ports:
           - "{{ port_number }}:5000"
-        volumes:
-          - /home/ubuntu/:/etc/nginx/
-        comparisons:
-          '*': ignore  # by default, ignore *all* options (including image)
-          env: strict 
+#         volumes:
+#           - /home/ubuntu/:/etc/nginx/
+#         comparisons:
+#           '*': ignore  # by default, ignore *all* options (including image)
+#           env: strict 
         env: 
           TEST_ENV: "{{ TEST_ENV }}"
           LOGIN: "{{ docker_cred }}"
