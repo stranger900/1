@@ -6,7 +6,7 @@
         name: "{{ env }}"
         image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
         state: started
-        recreate: yes
+        recreate: no
         restart_policy: unless-stopped
         networks_cli_compatible: no
         container_default_behavior: compatibility
