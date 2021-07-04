@@ -14,7 +14,10 @@
         ports:
           - "{{ port_number }}:5000"
         volumes:
-          - /home/ubuntu/:/etc/nginx/   
+          - /home/ubuntu/:/etc/nginx/
+        comparisons:
+          image: ignore 
+          volumes: allow_more_present  
         env: 
           TEST_ENV: "{{ TEST_ENV }}"
           LOGIN: "{{ docker_cred }}"
