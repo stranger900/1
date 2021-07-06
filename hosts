@@ -1,5 +1,5 @@
 [prod]
-192.168.1.13 ansible_user=ubuntu
+192.168.1.174 ansible_user=ubuntu
 
 [dev]
 192.168.1.206 ansible_user=ubuntu
