@@ -3,8 +3,9 @@
 
     - name: Launch new webapp container
       community.docker.docker_container:
-        name: "{{ env }}-{{ build_number }}"
-        image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
+        name: "{{ env }}-{{ mode }}"
+        #image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
+        image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-201"
         state: started
         recreate: no
         restart_policy: unless-stopped
@@ -20,7 +21,8 @@
 #           '*': ignore  # by default, ignore *all* options (including image)
 #           env: strict 
         env: 
-          TEST_ENV: "{{ TEST_ENV }}"
+          #TEST_ENV: "{{ TEST_ENV }}"
+          TEST_ENV: "{{ mode }}"
           LOGIN: "{{ docker_cred }}"
           IMAGE_NAME: "{{ image_name }}"
           BRANCH_NAME: "{{ branch_name }}"
