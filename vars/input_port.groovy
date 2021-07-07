@@ -1,7 +1,7 @@
 def call(){     
      env.PORT_NUMBER = input(
-        id: 'userInput', message: 'Let\'s promote?', parameters: [
-        [$class: 'TextParameterDefinition', defaultValue: 'Enter port number for docker container ( 5010 - 6000 )', description: 'Port number', name: 'pn']
+        id: 'userInput', message: 'Enter port number', parameters: [
+        [$class: 'TextParameterDefinition', defaultValue: 'port number', description: 'and press proceed', name: 'Enter port number for docker container ( 5010 - 6000 )']
         ])
      echo ("Env: "+env.PORT_NUMBER)
 }
