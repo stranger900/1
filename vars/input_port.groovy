@@ -1,5 +1,5 @@
 def call(){     
-     userInput = input(
+     PORT_NUMBER = input(
         id: 'userInput', message: 'Let\'s promote?', parameters: [
         [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env']
         ])
