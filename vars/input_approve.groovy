@@ -1,5 +1,5 @@
 def call(){     
-     PORT_NUMBER = input(
+     input_port = input(
                  id: 'userInput',
                  message: 'Should we continue?', 
                  ok: 'Approve',
