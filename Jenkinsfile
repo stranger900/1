@@ -42,13 +42,15 @@ pipeline{
               script {
               //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
                   if (env.BUILD_NUMBER % 2 == 1){
-                      env.MODE = "green"
-                      env.PORT_NUMBER = 5010
-                      echo 'env.MODE'
+//                       env.MODE = "green"
+//                       env.PORT_NUMBER = 5010
+//                       echo 'env.MODE'
+                         echo "green"
                   }else{
-                      env.MODE = "blue"
-                      env.PORT_NUMBER = 5012
-                      echo 'env.MODE'
+//                       env.MODE = "blue"
+//                       env.PORT_NUMBER = 5012
+//                       echo 'env.MODE'
+                         echo "blue"
                   }
                   //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'              }
           }
