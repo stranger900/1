@@ -15,11 +15,7 @@ pipeline{
         stage('Approve') {
             steps {
                 input_port()
-                 if (env.PORT_NUMBER > 5004 && env.PORT_NUMBER < 6001) {
-                        continue;
-                    } else {
-                        input_port()
-                 }
+                 
             }    
         } 
         stage('Docker Build and Tag') {
