@@ -8,9 +8,10 @@
 
     - name: Stop running containers
       docker_container:
-        name: "{{ item }}"
+        #name: "{{ item }}"
+        name: "{{ env }}-{{ mode }}"
         state: absent
-      loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
+      #loop: "{{ docker_info.containers | map(attribute='Id') | list }}"
       
 #    - name: Remove Stoped docker containers
 #      shell: |
