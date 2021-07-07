@@ -20,6 +20,7 @@ pipeline{
                     } else {
                         input_port()
                  }
+            }    
         } 
         stage('Docker Build and Tag') {
           steps {  
