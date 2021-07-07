@@ -1,5 +1,7 @@
 def call(){     
-     PORT_NUMBER = input(id: 'userInput', message: 'some message', parameters: [
-    [$class: 'ChoiceParameterDefinition', choices: string, description: 'description', name:'input'],
-    ])
+     userInput = input(
+        id: 'userInput', message: 'Let\'s promote?', parameters: [
+        [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env']
+        ])
+     echo ("Env: "+userInput)
 }
