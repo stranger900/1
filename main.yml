@@ -15,4 +15,4 @@
     - destroy_container
     #- deploy_nginx
     - deploy_nginx_conf
-    #- deploy_webapp
+    - deploy_webapp
