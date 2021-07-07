@@ -5,7 +5,7 @@ pipeline{
     environment{
         IMAGE_NAME = "webapp" 
         LOGIN = "andriy900"
-        PORT_NUMBER = "${BUILD_NUMBER.intdiv(2) == 1 ? '5010' : '5012'}"
+        //PORT_NUMBER = "${BUILD_NUMBER.intdiv(2) == 1 ? '5010' : '5012'}"
         DC_PORT_NUMBER = "80"
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
@@ -43,10 +43,11 @@ pipeline{
               //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
                   if (true){
 //                       env.MODE = "green"
+                      def v =  "${PORT_NUMBER}" % 2  
                       env.PORT_NUMBER = 5010
 //                       echo 'env.MODE'
                          echo "green"
-                         echo "${PORT_NUMBER}" 
+                         echo "v" 
                   }else{
 //                       env.MODE = "blue"
 //                       env.PORT_NUMBER = 5012
