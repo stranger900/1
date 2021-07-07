@@ -43,10 +43,10 @@ pipeline{
               script {
               //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
                   if (${BUILD_NUMBER} % 2 == 1){
-                      ${MODE} = "green"
+                      env.MODE = "green"
                       ${PORT_NUMBER} = 5010
                   }else{
-                      ${MODE} = "blue"
+                      env.MODE = "blue"
                       ${PORT_NUMBER} = 5012
                   }
                   ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'              }
