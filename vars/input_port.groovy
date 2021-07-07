@@ -3,5 +3,5 @@ def call(){
         id: 'userInput', message: 'Let\'s promote?', parameters: [
         [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env']
         ])
-     echo ("Env: "+userInput)
+     echo ("Env: "+PORT_NUMBER)
 }
