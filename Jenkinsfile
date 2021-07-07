@@ -42,17 +42,17 @@ pipeline{
               script {
               //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
                   if (BUILD_NUMBER.toInteger() % 2 == 0){
-                       env.MODE = "green"
-                      env.PORT_NUMBER = 5010
+                      "${MODE}" = "green"
+                      "${PORT_NUMBER}" = 5010
 //                       echo 'env.MODE'
-                         echo "${MODE}"
-                         echo "${PORT_NUMBER}"
+                       echo "${MODE}"
+                       echo "${PORT_NUMBER}"
                   }else{
-                       env.MODE = "blue"
-                       env.PORT_NUMBER = 5012
+                       "${MODE}" = "blue"
+                       "${PORT_NUMBER}"  = 5012
 //                       echo 'env.MODE'
-                         echo "${MODE}"
-                         echo "${PORT_NUMBER}" 
+                       echo "${MODE}"
+                       echo "${PORT_NUMBER}" 
                   }
                   //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'              }
           }
