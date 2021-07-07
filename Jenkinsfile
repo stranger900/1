@@ -5,7 +5,7 @@ pipeline{
     environment{
         IMAGE_NAME = "webapp" 
         LOGIN = "andriy900"
-        PORT_NUMBER = "${BUILD_NUMBER % 2 ? '5010' : '5012'}"
+        PORT_NUMBER = "${(BUILD_NUMBER % 2 == 1) ? '5010' : '5012'}"
         DC_PORT_NUMBER = "80"
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
