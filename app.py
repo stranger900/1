@@ -14,7 +14,8 @@ variables = [ os.environ['TEST_ENV'],
 with open ("settings.env", "w") as file:
 #     for line in variables:
 #        file.write(line + "\n")
-     file.write(variables[0] +' '+ variables[1] +' '+variables[2] +' '+ variables[3] + "\n")
+     file.write(variables[0] + "\n")
+     file.write(variables[1] +'/'+variables[2] +':'+ variables[3] + '-' + variables[4] + "\n")
      file.write(variables[4] + "\n")
 
 @app.route('/')
