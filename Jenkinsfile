@@ -37,29 +37,28 @@ pipeline{
              sh 'ansible-galaxy collection install community.docker -p $WORKSPACE/collections'
           }
         }
-        stage('mode') {
+        stage('Choice mode') {
           steps {
               script {
               //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
                   if (BUILD_NUMBER.toInteger() % 2 == 0){
                       env.MODE = "green"
                       env.PORT_NUMBER = 5010
-                       echo "${MODE}"
-                       echo "${PORT_NUMBER}"
+                       echo "Mode of deployment is {MODE}"
+                       echo "Port number of docker container is ${PORT_NUMBER}"
                   }else{
                        env.MODE = "blue"
                        env.PORT_NUMBER  = 5012
-                       echo "${MODE}"
-                       echo "${PORT_NUMBER}" 
-                  }
-                  //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'              }
+                       echo "Mode of deployment is ${MODE}"
+                       echo "Port number of docker container is ${PORT_NUMBER}" 
+                  }                  
           }
         }
     }
         stage('Deploy app') {
           steps {              
                   ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'    
-                  //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: env.MODE ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'
+                  
           }
           
         }
