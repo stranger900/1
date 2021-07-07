@@ -15,7 +15,7 @@ pipeline{
         stage('Approve') {
             steps {
                 input_port()
-                PORT_NUMBER = userInput
+                //PORT_NUMBER = userInput
             }
         } 
         stage('Docker Build and Tag') {
