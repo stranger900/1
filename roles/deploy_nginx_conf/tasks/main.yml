@@ -4,16 +4,16 @@
 #     - name: copy nginx configuration to remote host
 #       template: src=nginx.conf dest=/home/ubuntu/nginx.conf  
                      
-#     - name: Restart nginx container
-#       community.docker.docker_container:
-#         name: nginxapp
-#         image: nginx
-#         state: started
-#         restart: yes
-    
-    - name: Reload nginx service
+    - name: Restart nginx container
       community.docker.docker_container:
         name: nginxapp
         image: nginx
         state: started
-        command: "/etc/init.d/nginx reload"
+        restart: yes
+    
+#     - name: Reload nginx service
+#       community.docker.docker_container:
+#         name: nginxapp
+#         image: nginx
+#         state: started
+#         command: "/etc/init.d/nginx reload"
