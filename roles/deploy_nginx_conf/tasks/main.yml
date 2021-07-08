@@ -1,8 +1,8 @@
 ---
 # tasks file for deploy_nginx_conf
 
-#     - name: copy nginx configuration to remote host
-#       template: src=nginx.conf dest=/home/ubuntu/nginx.conf  
+    - name: copy nginx configuration to remote host
+      template: src=nginx.conf dest=/home/ubuntu/nginx.conf  
                      
     - name: Restart nginx container
       community.docker.docker_container:
