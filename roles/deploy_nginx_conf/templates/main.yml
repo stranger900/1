@@ -1,0 +1,2 @@
+    - name: copy nginx configuration to remote host
+      template: src=roles/deploy_nginx_conf/files/nginx.conf dest=/home/ubuntu/nginx.conf  
