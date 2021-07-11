@@ -23,7 +23,7 @@
           BRANCH_NAME: "{{ branch_name }}"
           BUILD_NUMBER: "{{ build_number }}"
           LOGIN_DB: "{{ LOGIN_BLUE }}"
-          PASSW_DB: "{{ TEST_ENV }}" #'{{ PASSW_BLUE }}'
+          PASSW_DB: "{{ PASSW_BLUE }}"
           DB_LINC: "{{ db_linc }}"
       when:  mode  == "blue"
       
@@ -49,7 +49,7 @@
           BRANCH_NAME: "{{ branch_name }}"
           BUILD_NUMBER: "{{ build_number }}"
           LOGIN_DB: "{{ LOGIN_GREEN }}"
-          PASSW_DB: "{{ TEST_ENV }}"  #'{{ PASSW_GREEN }}'
+          PASSW_DB: "{{ PASSW_GREEN }}"
           DB_LINC: "{{ db_linc }}"
       when:  mode  == "green"
       
