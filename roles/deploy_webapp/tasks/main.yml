@@ -25,7 +25,7 @@
           LOGIN_DB: "{{ LOGIN_BLUE }}"
           PASSW_DB: "{{ PASSW_BLUE }}"
           DB_LINC: "{{ db_linc }}"
-      when: "{{ mode }} == blue"
+      when: {{ mode }} == "blue"
       
     - name: Launch GREEN webapp container
       community.docker.docker_container:
@@ -51,5 +51,5 @@
           LOGIN_DB: "{{ LOGIN_GREEN }}"
           PASSW_DB: "{{ PASSW_GREEN }}"
           DB_LINC: "{{ db_linc }}"
-      when: "{{ mode }} == green"
+      when: {{ mode }} == "green"
       
