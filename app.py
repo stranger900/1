@@ -8,7 +8,11 @@ variables = [ os.environ['TEST_ENV'],
               os.environ['LOGIN'],
               os.environ['IMAGE_NAME'],
               os.environ['BRANCH_NAME'],
-              os.environ['BUILD_NUMBER'] ]
+              os.environ['BUILD_NUMBER'],
+              os.environ['LOGIN_DB'],
+              os.environ['PASSW_DB'],
+              os.environ['DB_LINC']
+            ]
 
 
 with open ("settings.env", "w") as file:
@@ -17,6 +21,9 @@ with open ("settings.env", "w") as file:
      file.write(variables[0] + "\n")
      file.write(variables[1] +'/'+variables[2] +':'+ variables[3] + '-' + variables[4] + "\n")
      file.write(variables[4] + "\n")
+     file.write('LOGIN_DB : ' + variables[5] + "\n")
+     file.write('PASSW_DB : ' + variables[6] + "\n")
+     file.write('DB_LINC : ' + variables[7] + "\n")
 
 @app.route('/')
 def get_variables():
