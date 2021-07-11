@@ -30,8 +30,8 @@
     - name: Launch GREEN webapp container
       community.docker.docker_container:
         name: "{{ env }}-{{ mode }}"
-        image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
-        #image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-201"
+        #image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
+        image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-258"
         state: started
         recreate: no
         restart_policy: unless-stopped
