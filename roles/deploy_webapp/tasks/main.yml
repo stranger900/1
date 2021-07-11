@@ -24,6 +24,7 @@
           BUILD_NUMBER: "{{ build_number }}"
           LOGIN_BLUE: "{{ LOGIN_BLUE }}"
           PASSW_BLUE: "{{ PASSW_BLUE }}"
+          DB_LINC: "{{ db_linc }}"
       when: "{{ mode }}" == "blue"
       
     - name: Launch GREEN webapp container
@@ -49,5 +50,6 @@
           BUILD_NUMBER: "{{ build_number }}"
           LOGIN_GREEN: "{{ LOGIN_GREEN }}"
           PASSW_GREEN: "{{ PASSW_GREEN }}"
+          DB_LINC: "{{ db_linc }}"
       when: "{{ mode }}" == "green"
       
