@@ -1,11 +1,11 @@
 ---
 # tasks file for deploy_webapp
 
-    - name: Launch new webapp container
+    - name: Launch BLUE webapp container
       community.docker.docker_container:
         name: "{{ env }}-{{ mode }}"
-        #image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
-        image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-201"
+        image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
+        #image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-201"
         state: started
         recreate: no
         restart_policy: unless-stopped
@@ -15,11 +15,6 @@
           - "{{ port_number }}"
         ports:
           - "{{ port_number }}:5000"
-#         volumes:
-#           - /home/ubuntu/:/etc/nginx/
-#         comparisons:
-#           '*': ignore  # by default, ignore *all* options (including image)
-#           env: strict 
         env: 
           #TEST_ENV: "{{ TEST_ENV }}"
           TEST_ENV: "{{ mode }}"
@@ -27,3 +22,32 @@
           IMAGE_NAME: "{{ image_name }}"
           BRANCH_NAME: "{{ branch_name }}"
           BUILD_NUMBER: "{{ build_number }}"
+          LOGIN_BLUE: "{{ LOGIN_BLUE }}"
+          PASSW_BLUE: "{{ PASSW_BLUE }}"
+      when: "{{ mode }}" == "blue"
+      
+    - name: Launch GREEN webapp container
+      community.docker.docker_container:
+        name: "{{ env }}-{{ mode }}"
+        image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-{{ build_number }}"
+        #image: "{{ docker_cred }}/{{ image_name }}:{{ branch_name }}-201"
+        state: started
+        recreate: no
+        restart_policy: unless-stopped
+        networks_cli_compatible: no
+        container_default_behavior: compatibility
+        exposed_ports:
+          - "{{ port_number }}"
+        ports:
+          - "{{ port_number }}:5000"
+        env: 
+          #TEST_ENV: "{{ TEST_ENV }}"
+          TEST_ENV: "{{ mode }}"
+          LOGIN: "{{ docker_cred }}"
+          IMAGE_NAME: "{{ image_name }}"
+          BRANCH_NAME: "{{ branch_name }}"
+          BUILD_NUMBER: "{{ build_number }}"
+          LOGIN_GREEN: "{{ LOGIN_GREEN }}"
+          PASSW_GREEN: "{{ PASSW_GREEN }}"
+      when: "{{ mode }}" == "green"
+      
