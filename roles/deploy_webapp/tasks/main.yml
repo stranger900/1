@@ -17,7 +17,7 @@
           - "{{ port_number }}:5000"
         env: 
           #TEST_ENV: "{{ TEST_ENV }}"
-          TEST_ENV: "{{ mode }}"
+          TEST_ENV: "{{ mode | upper }}"
           LOGIN: "{{ docker_cred }}"
           IMAGE_NAME: "{{ image_name }}"
           BRANCH_NAME: "{{ branch_name }}"
@@ -43,7 +43,7 @@
           - "{{ port_number }}:5000"
         env: 
           #TEST_ENV: "{{ TEST_ENV }}"
-          TEST_ENV: "{{ mode }}"
+          TEST_ENV: "{{ mode | upper }}"
           LOGIN: "{{ docker_cred }}"
           IMAGE_NAME: "{{ image_name }}"
           BRANCH_NAME: "{{ branch_name }}"
