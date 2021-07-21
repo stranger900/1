@@ -5,7 +5,6 @@ pipeline{
     environment{
         IMAGE_NAME = "webapp" 
         LOGIN = "andriy900"
-        //PORT_NUMBER = "${BUILD_NUMBER.intdiv(2) == 1 ? '5010' : '5012'}"
         DC_PORT_NUMBER = "80"
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
@@ -22,7 +21,8 @@ pipeline{
             steps {
                 script {
                     if ( "git diff --name-only  @~..@ docker == (docker/requirements.txt || docker/Dockerfile || docker/app.py)"){
-                        docker_build(dockerhub_cred:"${DOCKERHUB_CRED_USR}", image_name:"${IMAGE_NAME}", branch_name:"${BRANCH_NAME}", build_number:"${BUILD_NUMBER}")
+                        //docker_build(dockerhub_cred:"${DOCKERHUB_CRED_USR}", image_name:"${IMAGE_NAME}", branch_name:"${BRANCH_NAME}", build_number:"${BUILD_NUMBER}")
+                        sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} docker/Dockerfile'  
                         withDockerRegistry(credentialsId: 'dockerhub', url: '') {
                             sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
                         }    
