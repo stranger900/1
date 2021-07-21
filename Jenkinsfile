@@ -22,7 +22,7 @@ pipeline{
                 script {
                     if ( "git diff --name-only  @~..@ docker == (docker/requirements.txt || docker/Dockerfile || docker/app.py)"){
                         //docker_build(dockerhub_cred:"${DOCKERHUB_CRED_USR}", image_name:"${IMAGE_NAME}", branch_name:"${BRANCH_NAME}", build_number:"${BUILD_NUMBER}")
-                        sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} docker/Dockerfile'  
+                        sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} docker/'  
                         withDockerRegistry(credentialsId: 'dockerhub', url: '') {
                             sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
                         }    
