@@ -26,7 +26,7 @@ pipeline{
 //                         withDockerRegistry(credentialsId: 'dockerhub', url: '') {
 //                             sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
 //                         }    
-                        echo "git diff --name-only  @~..@ docker"
+                        sh( "git diff --name-only  @~..@ docker")
                         echo "Docker build`ve done"
                     }else{
                         echo "Docker build haven`t done"
