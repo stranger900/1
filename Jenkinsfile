@@ -18,6 +18,21 @@ pipeline{
                  
 //             }    
 //         } 
+           stage("Docker Build"){
+            steps {
+                script {
+                    if ( "git diff --name-only  @~..@ docker == (docker/requirements.txt || docker/Dockerfile || docker/app.py)"){
+                        docker_build(dockerhub_cred:"${DOCKERHUB_CRED_USR}", image_name:"${IMAGE_NAME}", branch_name:"${BRANCH_NAME}", build_number:"${BUILD_NUMBER}")
+                        withDockerRegistry(credentialsId: 'dockerhub', url: '') {
+                            sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
+                        }    
+                        echo "Docker build`ve done"
+                    }else{
+                        echo "Docker build haven`t done"
+                    }                  
+                }
+            }    
+           }
 //         stage('Docker Build and Tag') {
 //           steps {  
 //               docker_build(dockerhub_cred:"${DOCKERHUB_CRED_USR}", image_name:"${IMAGE_NAME}", branch_name:"${BRANCH_NAME}", build_number:"${BUILD_NUMBER}")
@@ -39,22 +54,7 @@ pipeline{
         }
         stage('Choice mode') {
           steps {
-              choice_mode()
-//               script {
-//                   if (BUILD_NUMBER.toInteger() % 2 == 0){
-//                        env.MODE = "green"
-//                        env.PORT_NUMBER = 5010
-//                        env.DB_LINC = "green-server.com"
-//                        echo "Mode of deployment is ${MODE}"
-//                        echo "Port number of docker container is ${PORT_NUMBER}"
-//                   }else{
-//                        env.MODE = "blue"
-//                        env.PORT_NUMBER  = 5012
-//                        env.DB_LINC = "blue-server.com"
-//                        echo "Mode of deployment is ${MODE}"
-//                        echo "Port number of docker container is ${PORT_NUMBER}" 
-//                   }                  
-//           }
+              choice_mode()              
         }
     }
         stage('Deploy app') {
