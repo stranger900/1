@@ -66,5 +66,11 @@ pipeline{
                         }
           
         }
+        stage('downstream job'){
+            steps {
+            build job: 'test_app'//, parameters: [string(name: 'ENV', value: "${params.ENV}")]
+            
+            }
+        }    
     }
 }
