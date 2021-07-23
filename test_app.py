@@ -4,7 +4,7 @@ from app import app, variables
 
 class PageLoadTest(unittest.TestCase):
     def test_stat(self):
-        response = requests.get('http://localhost:5000')
+        response = requests.get('http://192.168.1.15:5000')
         assert response.status_code == 200
 
     def test_status(self):
