@@ -3,7 +3,7 @@ import unittest, requests, os
 
 class PageLoadTest(unittest.TestCase):
     def test_stat(self):
-        response = requests.get('http://192.168.1.15:5000')
+        response = requests.get('http://192.168.1.15:5010')
         assert response.status_code == 200
 
 #     def test_status(self):
