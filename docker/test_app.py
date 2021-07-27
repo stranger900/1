@@ -4,6 +4,7 @@ import unittest, requests, os, sys
 ip =  sys.argv[1]
 port = sys.argv[2]
 
+print(" ")
 print("Testing :  " + str(sys.argv[1]) + ":" + str(sys.argv[2]))
 
 response = requests.get("http://" + ip + ":" + port)
