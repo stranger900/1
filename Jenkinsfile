@@ -9,7 +9,7 @@ pipeline{
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
         DOCKERHUB_CRED = credentials('dockerhub')
-        IP = "192.168.1.16"
+        IP_ADDRESS = "192.168.1.16"
     }    
     stages{
 //         stage('Approve') {
@@ -68,7 +68,7 @@ pipeline{
         }
         stage('downstream job'){
             steps {
-            build job: 'test_app', parameters: [string(name: 'IP', value: "${params.IP}"), string(name: 'PORT_NUMBER', value: "${env.PORT_NUMBER}")]
+            build job: 'test_app', parameters: [string(name: 'IP_ADDRESS', value: "${IP_ADDRESS}"), string(name: 'PORT_NUMBER', value: "${PORT_NUMBER}")]
             
             }
         }    
