@@ -25,7 +25,5 @@ if   (ping == 0):
 else:
      print("ERROR ***** Something wrong") 
 
-
-
 #if __name__ == '__main__':
 #     unittest.main()
