@@ -1,7 +1,7 @@
 @Library("shared-libraries-input") _
 pipeline{
     options {        
-        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '4'))
     }
     agent {label 'ubuntu'}
     
