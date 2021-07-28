@@ -68,7 +68,7 @@ pipeline{
         }
         stage('downstream job'){
             steps {
-            build job: 'test_app', parameters: [string(name: 'IP', value: "${params.IP}"), string(name: 'PORT_NUMBER', value: "${env.PORT_NUMBER}")]
+            build job: 'test_app'//, parameters: [string(name: 'IP', value: "${params.IP}"), string(name: 'PORT_NUMBER', value: "${env.PORT_NUMBER}")]
             
             }
         }    
