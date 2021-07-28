@@ -12,7 +12,8 @@ pipeline{
         IP_ADDRESS = "192.168.1.15"
     }    
     options {
-        properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([[$class: 'ComputedFolderWebHookTrigger', token: 'mytoken']])])    }
+        properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))])
+    }
     stages{
 //         stage('Approve') {
 //             steps {
