@@ -6,4 +6,4 @@ def test_status():
 
 def test_connection():
     ping = os.system("ping -c 1" + sys.argv[2])
-    assert ping == 0
+    assert ping == 512
