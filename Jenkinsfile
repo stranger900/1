@@ -1,5 +1,8 @@
 @Library("shared-libraries-input") _
 pipeline{
+    options{
+        properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))])
+    }
     agent {label 'ubuntu'}
     
     environment{
@@ -10,10 +13,7 @@ pipeline{
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
         DOCKERHUB_CRED = credentials('dockerhub')
         IP_ADDRESS = "192.168.1.15"
-    }    
-    options {
-        properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))])
-    }
+    }        
     stages{
 //         stage('Approve') {
 //             steps {
