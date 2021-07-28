@@ -9,7 +9,7 @@ pipeline{
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
         DOCKERHUB_CRED = credentials('dockerhub')
-        IP_ADDRESS = "192.168.1.16"
+        IP_ADDRESS = "192.168.1.15"
     }    
     stages{
 //         stage('Approve') {
