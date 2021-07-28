@@ -11,6 +11,8 @@ pipeline{
         DOCKERHUB_CRED = credentials('dockerhub')
         IP_ADDRESS = "192.168.1.15"
     }    
+    options {
+        properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([[$class: 'ComputedFolderWebHookTrigger', token: 'mytoken']])])    }
     stages{
 //         stage('Approve') {
 //             steps {
