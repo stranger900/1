@@ -8,7 +8,8 @@ pipeline{
         DC_PORT_NUMBER = "80"
         BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
         ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
-        DOCKERHUB_CRED = credentials('dockerhub')   
+        DOCKERHUB_CRED = credentials('dockerhub')
+        IP = "192.168.1.16"
     }    
     stages{
 //         stage('Approve') {
@@ -58,17 +59,16 @@ pipeline{
         stage('Choice mode') {
           steps {
               choice_mode()              
+          }
         }
-    }
         stage('Deploy app') {
           steps {              
                   ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}", db_linc: "${DB_LINC}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'    
-                        }
-          
+          }          
         }
         stage('downstream job'){
             steps {
-            build job: 'test_app'//, parameters: [string(name: 'ENV', value: "${params.ENV}")]
+            build job: 'test_app', parameters: [string(name: 'IP', value: "${params.IP}"), string(name: 'PORT_NUMBER', value: "${env.PORT_NUMBER}")]
             
             }
         }    
