@@ -31,7 +31,15 @@ def get_variables():
         info = file.readlines()
 
     return render_template('index.html', info=info)
+  
+  
+@app.route('/health')
+def health():
+    """health route"""
+    state = {"status": "UP"}
+    return jsonify(state)
 
-if __name__ == '__main__':
+
+    if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')
 
