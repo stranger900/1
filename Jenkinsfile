@@ -18,39 +18,11 @@ pipeline{
                  
 //             }    
 //         } 
-           stage("Docker Build"){
-            steps {
+        stage("Docker Build"){
+          steps {
                 docker_build_push()
-//                 script {
-//                     env.count = sh(returnStdout: true, script: 'git diff --name-only  @~..@ docker | wc -l').trim()
-//                     if ( env.count.toInteger() > 0){
-//                         //docker_build(dockerhub_cred:"${DOCKERHUB_CRED_USR}", image_name:"${IMAGE_NAME}", branch_name:"${BRANCH_NAME}", build_number:"${BUILD_NUMBER}")
-//                         sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-latest docker/'  
-//                         withDockerRegistry(credentialsId: 'dockerhub', url: '') {
-//                             sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-latest'
-//                         }    
-//                         sh( "git diff --name-only  @~..@ docker")
-//                         echo "${count}"
-//                         echo "Docker build`ve done"
-//                     }else{
-//                         echo "Docker build haven`t done"
-//                     }                  
-//                 }
-            }    
-           }
-//         stage('Docker Build and Tag') {
-//           steps {  
-//               docker_build(dockerhub_cred:"${DOCKERHUB_CRED_USR}", image_name:"${IMAGE_NAME}", branch_name:"${BRANCH_NAME}", build_number:"${BUILD_NUMBER}")
-//               //sh 'docker build -t ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER} .'            
-//           }
-//         }
-//         stage('Publish image to Docker Hub') {
-//           steps {
-//               withDockerRegistry(credentialsId: 'dockerhub', url: '') {
-//                   sh 'docker push ${DOCKERHUB_CRED_USR}/${IMAGE_NAME}:${BRANCH_NAME}-${BUILD_NUMBER}'
-//               }              
-//           }
-//         }
+          }    
+        }
         stage('Install modules') {
           steps {
                sh 'export ANSIBLE_COLLECTIONS_PATHS="$WORKSPACE/collections"'
