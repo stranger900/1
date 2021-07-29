@@ -1,0 +1,22 @@
+pipeline{
+    agent any
+    
+    parameters {
+        string(name: 'IP_ADDRESS', defaultValue: '', description: 'ip address')
+        string(name: 'PORT_NUMBER', defaultValue: '', description: 'port number')
+    }
+    
+    stages {
+        stage('Git checkout'){
+            steps{
+                git 'https://github.com/stranger900/1.git'
+            }
+        }
+        stage("git diff"){
+            steps {
+                sh( "python docker/run.py docker/test_app_pytest.py ${params.IP_ADDRESS} ${params.PORT_NUMBER}")
+            }
+        }
+        
+    }
+}
