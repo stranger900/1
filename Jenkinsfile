@@ -39,7 +39,7 @@ pipeline{
         }
         stage('Ping') {
           steps {
-                sh 'ansible -i hosts prod -m ping -vvvv'            
+                sh 'ansible -i hosts prod -m ping -vvv'            
           }
         }
         stage('Deploy app') {
