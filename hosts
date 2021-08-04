@@ -1,8 +1,8 @@
 [prod]
-192.168.1.10 ansible_user=ubuntu
+prod1 ansible_host=192.168.1.10   ansible_user=ubuntu
 
 [dev]
-192.168.1.206 ansible_user=ubuntu
+dev1  ansible_host=192.168.1.206  ansible_user=ubuntu
 
 [all:children]
 prod
