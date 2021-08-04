@@ -37,11 +37,11 @@ pipeline{
                 choice_mode()              
           }
         }
-//         stage('Ping') {
-//           steps {
-//                 sh 'ansible -i hosts prod -m ping'            
-//           }
-//         }
+        stage('Ping') {
+          steps {
+                sh 'ansible -i hosts prod -m ping'            
+          }
+        }
         stage('Deploy app') {
           steps {              
                 ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}", db_linc: "${DB_LINC}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'    
