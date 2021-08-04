@@ -47,13 +47,7 @@ pipeline{
                 //ansiblePlaybook credentialsId: 'private-key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}", db_linc: "${DB_LINC}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'  
                 ansiblePlaybook credentialsId: 'docker_image_private_key', vaultCredentialsId: 'ansible_vault', extraVars:[env: "${ENV}", branch_name: "${BRANCH_NAME}", build_number: "${BUILD_NUMBER}", docker_cred: "${DOCKERHUB_CRED_USR}", image_name: "${IMAGE_NAME}", dc_port_number: "${DC_PORT_NUMBER}", port_number: "${PORT_NUMBER}", mode: "${MODE}", db_linc: "${DB_LINC}" ], installation: 'ansible', inventory: 'hosts', playbook: 'main.yml'    
           }          
-        }
-        stage('downstream job'){
-          steps {
-                build job: 'test_app', parameters: [string(name: 'IP_ADDRESS', value: "${IP_ADDRESS}"), string(name: 'PORT_NUMBER', value: "${PORT_NUMBER}")]
-            
-          }          
-        }
+        }        
         stage('downstream job'){
           steps {
                 build job: 'test_app', parameters: [string(name: 'IP_ADDRESS', value: "${IP_ADDRESS}"), string(name: 'PORT_NUMBER', value: "${PORT_NUMBER}")]
