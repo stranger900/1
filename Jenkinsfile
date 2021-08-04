@@ -52,11 +52,6 @@ pipeline{
           steps {
                 build job: 'test_app', parameters: [string(name: 'IP_ADDRESS', value: "${IP_ADDRESS}"), string(name: 'PORT_NUMBER', value: "${PORT_NUMBER}")]
             
-            }
-        }    
-    }
-}
-
           }          
         }
         stage('downstream job'){
