@@ -20,15 +20,15 @@ spec:
             - containerPort: 5000
           env:
             - name: TEST_ENV
-              value: $mode
+              value: $(mode)
             - name: LOGIN
-              value: $LOGIN
+              value: $(LOGIN)
             - name: IMAGE_NAME
-              value: "{{ image_name }}"
+              value: $(IMAGE_NAME)
             - name: BRANCH_NAME
-              value: $BRANCH_NAME
+              value: $(BRANCH_NAME)
             - name: BUILD_NUMBER
-              value:  $BUILD_NUMBER
+              value:  $(BUILD_NUMBER)
             - name: LOGIN_DB
               value: admin
             - name: PASSW_DB
