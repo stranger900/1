@@ -29,7 +29,8 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                sh 'kubectl apply -f k8s/deploy_webapp.yaml'
+                sh 'kubectl apply -f k8s/deploy_webapp.yaml --env=TEST_ENV=$mode --env=LOGIN=$LOGIN --env=IMAGE_NAME=$IMAGE_NAME --env=BRANCH_NAME=$BRANCH_NAME --env=BUILD_NUMBER=$BUILD_NUMBER --env=LOGIN_DB=admin --env=PASSW_DB=a1111a --env=DB_LINC=server.com'
+                
             }
         }
         // stage("Deploy"){
