@@ -21,8 +21,8 @@ spec:
           env:
             - name: TEST_ENV
               value: $(mode)
-            - name: LOGIN
-              value: $(LOGIN)
+            - name: "${LOGIN}"
+#               value: $(LOGIN)
             - name: IMAGE_NAME
               value: $(IMAGE_NAME)
             - name: BRANCH_NAME
