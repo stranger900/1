@@ -15,10 +15,26 @@ spec:
     spec:
       containers:
         - name: my-web
-          image: ghost
+          image: andriy900/webapp:master-latest
           ports:
-            - containerPort: 2368
-
+            - containerPort: 5000
+          env:
+            - name: TEST_ENV
+              value: $mode
+            - name: LOGIN
+              value: $LOGIN
+            - name: IMAGE_NAME
+              value: $IMAGE_NAME
+            - name: BRANCH_NAME
+              value: $BRANCH_NAME
+            - name: BUILD_NUMBER
+              value:  $BUILD_NUMBER
+            - name: LOGIN_DB
+              value: admin
+            - name: PASSW_DB
+              value: "1234"
+            - name: DB_LINC
+              value:  server.com
 ---
 apiVersion: v1
 kind: Service
@@ -29,9 +45,9 @@ metadata:
 spec:
   ports:
   - nodePort: 32223
-    port: 2368
+    port: 5000
     protocol: TCP
-    targetPort: 2368
+    targetPort: 5000
   selector:
     app: my-web
   type: NodePort
