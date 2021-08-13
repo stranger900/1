@@ -1,0 +1,44 @@
+@Library("shared-libraries") _
+pipeline{
+    agent any
+    environment{
+        KUBECONFIG="/opt/config"
+        IMAGE_NAME = "webapp" 
+        LOGIN = "andriy900"
+        DC_PORT_NUMBER = "80"
+        BRANCH_NAME = "${GIT_BRANCH.toLowerCase().replaceAll('^[0-9]', '').replaceAll('[^a-z0-9]', '-').replaceAll('-+', '-').replaceAll('(^-+|-+$)', '').take(63)}"
+        //ENV = "${BRANCH_NAME == 'master' ? 'prod' : 'dev'}"
+        //DOCKERHUB_CRED = credentials('dockerhub')
+        //IP_ADDRESS = "192.168.1.15"
+    }    
+    stages {
+        stage('Git init'){
+            steps{
+                git 'https://github.com/stranger900/1.git'
+            }
+        }
+        stage('Get pods'){
+            steps{
+                sh 'kubectl get nodes'
+            }
+        }
+        stage('Choice mode') {
+          steps {
+                choice_mode()              
+          }
+        }
+        stage('Deploy'){
+            steps{
+                sh 'kubectl delete -f deploy_webapp.yaml'
+            }
+        }
+        // stage("Deploy"){
+        //     steps {
+        //         script {
+        //         kubernetesDeploy(configs: "deploy_webapp.yaml", kubeconfigId: "kube-config")
+        //         }
+        //     }
+        // }
+        
+    }
+}
