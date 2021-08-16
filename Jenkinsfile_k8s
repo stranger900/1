@@ -29,7 +29,7 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                sh 'kubectl apply -f k8s/deploy_webapp.yaml'
+                sh 'kubectl delete -f k8s/deploy_webapp.yaml'
                 
             }
         }
