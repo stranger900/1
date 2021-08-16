@@ -30,11 +30,11 @@ pipeline{
         stage('Deploy'){
             steps{
                 sh 'helm install web  helm-chart/templates/webapp-v1.yaml \
-                --set envmap.TEST_ENV=$(mode) \
-                --set envmap.LOGIN=$(LOGIN) \
-                --set envmap.IMAGE_NAME=$(IMAGE_NAME) \
-                --set envmap.BRANCH_NAME=$(BRANCH_NAME) \
-                --set envmap.BUILD_NUMBER-$(BUILD_NUMBER) \
+                --set envmap.TEST_ENV=${mode} \
+                --set envmap.LOGIN=${LOGIN} \
+                --set envmap.IMAGE_NAME=${IMAGE_NAME} \
+                --set envmap.BRANCH_NAME=${BRANCH_NAME} \
+                --set envmap.BUILD_NUMBER-${BUILD_NUMBER} \
                 --set envmap.LOGIN_DB=admin \
                 --set envmap.PASSW_DB=12345 \
                 --set envmap.DB_LINC=server.com  '
