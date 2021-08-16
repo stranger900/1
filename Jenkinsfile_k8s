@@ -30,7 +30,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 sh """
-                helm install web  helm-chart/templates/webapp-v1.yaml \
+                helm install web  helm-chart/templates/webapp-v1.yaml --values helm-chart/values.yaml \
                 --set envmap.TEST_ENV=${mode} \
                 --set envmap.LOGIN=${LOGIN} \
                 --set envmap.IMAGE_NAME=${IMAGE_NAME} \
