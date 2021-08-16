@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app  #  {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      run: load-example
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        run: load-example
+    spec:
+      containers:
+        - name:  web-app  #   {{ .Release.Name }}
+          image: {{ .Values.container.image }}
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+          env:
+            {{- range $key, $value := .Values.envmap }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+
+
+
