@@ -1,0 +1,15 @@
+ontainer:
+  image: andriy900/webapp:master-latest
+
+replicaCount: 1
+
+envmap:
+  TEST_ENV: value01
+  LOGIN: LOGIN
+  IMAGE_NAME: IMAGE_NAME
+  BRANCH_NAME: BRANCH_NAME
+  BUILD_NUMBER: BUILD_NUMBER
+  LOGIN_DB: admin
+  PASSW_DB: 12345
+  DB_LINC: server.com
+
