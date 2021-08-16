@@ -29,7 +29,8 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                sh 'helm install web  helm-chart/templates/webapp-v1.yaml \
+                sh """
+                helm install web  helm-chart/templates/webapp-v1.yaml \
                 --set envmap.TEST_ENV=${mode} \
                 --set envmap.LOGIN=${LOGIN} \
                 --set envmap.IMAGE_NAME=${IMAGE_NAME} \
@@ -37,7 +38,8 @@ pipeline{
                 --set envmap.BUILD_NUMBER-${BUILD_NUMBER.toInteger()} \
                 --set envmap.LOGIN_DB=admin \
                 --set envmap.PASSW_DB=12345 \
-                --set envmap.DB_LINC=server.com  '
+                --set envmap.DB_LINC=server.com  
+                """
                 
             }
         }
