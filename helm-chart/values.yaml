@@ -1,4 +1,4 @@
-ontainer:
+container:
   image: andriy900/webapp:master-latest
 
 replicaCount: 1
