@@ -29,7 +29,7 @@ pipeline{
         }
         stage("add Repo") {
           steps {
-                sh "helm repo add andriy900 ${repo}"
+                sh "helm repo add andriy900/webapp ${repo}"
           }
         }
         stage('Deploy'){
