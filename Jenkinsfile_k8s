@@ -26,13 +26,8 @@ pipeline{
           steps {
                 choice_mode()              
           }
-        }
-        //stage("add Repo") {
-        //  steps {
-        //        sh "helm repo add andriy900/webapp"
-        //  }
-        //}
-        stage('Deploy'){
+        }        
+        stage('Helm install web-app'){
             steps{
                 sh """
                 helm install web-app  helm-chart/ --values helm-chart/values.yaml -n default \
@@ -48,13 +43,13 @@ pipeline{
                 
             }
         }
-        // stage("Deploy"){
-        //     steps {
-        //         script {
-        //         kubernetesDeploy(configs: "deploy_webapp.yaml", kubeconfigId: "kube-config")
-        //         }
-        //     }
-        // }
+        stage("Create NodePort"){
+            steps {
+                script {
+                sh 'kubectl expose deployment hello-world --type=LoadBalancer --name=my-service'
+                }
+            }
+        }
         
     }
 }
