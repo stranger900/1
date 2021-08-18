@@ -27,11 +27,11 @@ pipeline{
                 choice_mode()              
           }
         }
-        stage("add Repo") {
-          steps {
-                sh "helm repo add andriy900/webapp ${repo}"
-          }
-        }
+        //stage("add Repo") {
+        //  steps {
+        //        sh "helm repo add andriy900/webapp ${repo}"
+        //  }
+        //}
         stage('Deploy'){
             steps{
                 sh """
