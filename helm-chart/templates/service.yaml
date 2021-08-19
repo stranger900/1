@@ -7,5 +7,5 @@ spec:
     app: web-app
   ports:
     - port: 5000
-      targetPort: 32321
-  type: LoadBalancer
+      targetPort: 5000
+  type: NodePort
