@@ -21,4 +21,4 @@ spec:
     protocol: TCP
   selector:
     run: web-app
-
+  type: NodePort
