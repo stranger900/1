@@ -44,7 +44,7 @@ pipeline{
         stage("Create NodePort"){
             steps {
                 script {
-                sh 'kubectl expose deployment hello-world --type=LoadBalancer --name=my-service'
+                sh 'kubectl expose deployment web-app --type=LoadBalancer --name=my-service'
                 }
             }
         }
