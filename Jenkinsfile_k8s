@@ -19,7 +19,7 @@ pipeline{
         stage('Helm uninstall web-app'){
             steps{
                 sh """
-                helm uninstall web-app  helm-chart/  -n default            
+                helm uninstall web-app   -n default            
                 """                
             }
         }
