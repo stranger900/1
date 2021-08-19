@@ -6,12 +6,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: load-example
+      run: web-app
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:
-        run: load-example
+        run: web-app
     spec:
       containers:
         - name:  web-app  #   {{ .Release.Name }}
