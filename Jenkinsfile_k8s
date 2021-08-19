@@ -41,13 +41,13 @@ pipeline{
                 """                
             }
         }
-        stage("Create NodePort"){
-            steps {
-                script {
-                sh 'kubectl expose deployment web-app --type=LoadBalancer --name=my-service'
-                }
-            }
-        }
+//        stage("Create LoadBalancer"){
+//            steps {
+//                script {
+//                sh 'kubectl expose deployment web-app --type=LoadBalancer --name=my-service'
+//                }
+//            }
+//        }
         
     }
 }
