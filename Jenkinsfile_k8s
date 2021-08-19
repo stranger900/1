@@ -21,30 +21,22 @@ pipeline{
                 sh 'kubectl get nodes'
             }
         }
-        stage('Choice mode') {
-          steps {
-                choice_mode()              
-          }
-        }        
-        stage('Helm install web-app'){
+//        stage('Choice mode') {
+//          steps {
+//                choice_mode()              
+//          }
+//        }        
+        stage('Helm uninstall web-app'){
             steps{
                 sh """
-                helm install web-app  helm-chart/ --values helm-chart/values.yaml -n default \
-                --set envmap.TEST_ENV=${mode} \
-                --set envmap.LOGIN=${LOGIN} \
-                --set envmap.IMAGE_NAME=${IMAGE_NAME} \
-                --set envmap.BRANCH_NAME=${BRANCH_NAME} \
-                --set envmap.BUILD_NUMBER=${BUILD_NUMBER.toInteger()} \
-                --set envmap.LOGIN_DB=admin \
-                --set envmap.PASSW_DB=12345 \
-                --set envmap.DB_LINC=server.com  
+                helm uninstall web-app  helm-chart/ --values helm-chart/values.yaml -n default            
                 """                
             }
         }
-        stage("Create NodePort"){
+        stage("Delete LoadBalancer"){
             steps {
                 script {
-                sh 'kubectl expose deployment hello-world --type=LoadBalancer --name=my-service'
+                sh 'kubectl delete svc my-service'
                 }
             }
         }
