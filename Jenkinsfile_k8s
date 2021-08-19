@@ -11,25 +11,15 @@ pipeline{
 
     }    
     stages {
-        stage('Git init'){
-            steps{
-                git 'https://github.com/stranger900/1.git'
-            }
-        }
         stage('Get pods'){
             steps{
                 sh 'kubectl get nodes'
             }
         }
-//        stage('Choice mode') {
-//          steps {
-//                choice_mode()              
-//          }
-//        }        
         stage('Helm uninstall web-app'){
             steps{
                 sh """
-                helm uninstall web-app  helm-chart/ --values helm-chart/values.yaml -n default            
+                helm uninstall web-app  helm-chart/  -n default            
                 """                
             }
         }
