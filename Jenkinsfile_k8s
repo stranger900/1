@@ -18,9 +18,9 @@ pipeline{
         }
         stage('Helm uninstall web-app'){
             steps{
-                sh """
-                helm delete helm-chart               
-                """                
+                script {
+                sh 'helm delete web-app'
+                }             
             }
         }
         stage("Delete LoadBalancer"){
