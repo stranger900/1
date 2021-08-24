@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-app  #  {{ .Release.Name }}
+  name:  {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
-      run: web-app
+      run: {{ .Release.Name }}
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:
-        run: web-app
+        run: {{ .Release.Name }}
     spec:
       containers:
-        - name:  web-app  #   {{ .Release.Name }}
+        - name:  {{ .Release.Name }}
           image: {{ .Values.container.image }}
           ports:
             - containerPort: 5000
