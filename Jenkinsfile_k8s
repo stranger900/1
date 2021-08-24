@@ -23,13 +23,13 @@ pipeline{
                 }             
             }
         }
-        stage("Delete LoadBalancer"){
-            steps {
-                script {
-                sh 'kubectl delete svc my-service'
-                }
-            }
-        }
+//        stage("Delete LoadBalancer"){
+//            steps {
+//                script {
+//                sh 'kubectl delete svc my-service'
+//                }
+//            }
+//        }
         
     }
 }
