@@ -29,7 +29,7 @@ pipeline{
         stage('Helm install web-app'){
             steps{
                 sh """
-                helm install webapp2  helm-chart/ --values helm-chart/values.yaml -n default \
+                helm install web-app  helm-chart/ --values helm-chart/values.yaml -n default \
                 --set envmap.TEST_ENV=${mode} \
                 --set envmap.LOGIN=${LOGIN} \
                 --set envmap.IMAGE_NAME=${IMAGE_NAME} \
